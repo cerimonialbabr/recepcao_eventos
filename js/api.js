@@ -1,29 +1,33 @@
-const API =
-"https://script.google.com/macros/s/AKfycbyydFstY24y3Bt5YZjiT8BZeDEMt9_eH3YD1POJpP14ksI5Eb7L14TSglb8qhHD9Ko_/exec";
+const API="https://script.google.com/macros/s/AKfycbyydFstY24y3Bt5YZjiT8BZeDEMt9_eH3YD1POJpP14ksI5Eb7L14TSglb8qhHD9Ko_/exec";
 
-async function carregarConvidados(){
+async function apiGet(acao,param={}){
 
-    const r =
-    await fetch(API+"?acao=convidados");
+const url=new URL(API);
 
-    return await r.json();
+url.searchParams.append("acao",acao);
+
+Object.keys(param).forEach(k=>{
+
+url.searchParams.append(k,param[k]);
+
+});
+
+const r=await fetch(url);
+
+return await r.json();
 
 }
 
-async function carregarAutoridades(){
+async function apiPost(body){
 
-    const r =
-    await fetch(API+"?acao=autoridades");
+const r=await fetch(API,{
 
-    return await r.json();
+method:"POST",
 
-}
+body:JSON.stringify(body)
 
-async function carregarMesas(){
+});
 
-    const r =
-    await fetch(API+"?acao=mesas");
-
-    return await r.json();
+return await r.json();
 
 }
