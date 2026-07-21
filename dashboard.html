@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Recepção BABR</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topo">
+    <div>
+      <p class="topo-marca">BASE AÉREA DE BRASÍLIA</p>
+      <h1>Dashboard</h1>
+      <p class="topo-subtitulo">Acompanhamento do evento em tempo real</p>
+    </div>
+    <nav class="navegacao">
+      <a href="index.html">Recepção</a>
+      <a href="autoridades.html">Autoridades</a>
+      <a href="mesas.html">Mesas</a>
+      <a class="ativo" href="dashboard.html">Dashboard</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="resumo resumo-grande">
+      <article>
+        <strong id="dashPresentes">0</strong>
+        <span>presentes</span>
+      </article>
+      <article>
+        <strong id="dashPendentes">0</strong>
+        <span>pendentes</span>
+      </article>
+      <article>
+        <strong id="dashTotal">0</strong>
+        <span>convidados</span>
+      </article>
+      <article>
+        <strong id="dashPercentual">0%</strong>
+        <span>comparecimento</span>
+      </article>
+    </section>
+
+    <section class="painel">
+      <div class="cabecalho-secao">
+        <div>
+          <h2>Ocupação das mesas</h2>
+          <p id="ultimaAtualizacao"></p>
+        </div>
+        <button id="atualizarDashboard" class="botao-secundario" type="button">Atualizar</button>
+      </div>
+      <div id="tabelaMesas" class="tabela-responsiva"></div>
+    </section>
+
+    <section class="painel">
+      <h2>Últimos check-ins</h2>
+      <div id="ultimosCheckins" class="lista-simples"></div>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
