@@ -1,41 +1,42 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recepção BABR</title><link rel="stylesheet" href="css/style.css">
-</head>
+<html lang="pt-BR"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Recepção</title><link rel="stylesheet" href="css/style.css"></head>
 <body>
 <header class="topo">
-  <div>
-    <p class="topo-marca">BASE AÉREA DE BRASÍLIA</p>
-    <h1>Recepção</h1>
-    <p class="topo-subtitulo">Pesquisa e confirmação de presença</p>
+  <div class="identidade-evento">
+    <p class="nome-sistema">Sistema de Gestão de Recepção em Eventos Sociais</p>
+    <h1 data-evento-nome>Evento</h1>
+    <p class="dados-evento" data-evento-dados></p>
   </div>
   <nav class="navegacao">
   <a class="ativo" href="index.html">Recepção</a>
   <a  href="nominata.html">Nominata</a>
   <a  href="mesas.html">Mesas</a>
   <a  href="dashboard.html">Dashboard</a>
+  <a  href="layout.html">Layout (TV)</a>
   <a  href="organizacao.html">Organização</a>
 </nav>
 </header>
 <main class="container container-estreito">
-  <section class="painel">
-    <label class="rotulo" for="pesquisa">Pesquisar convidado</label>
-    <input id="pesquisa" class="campo-pesquisa" type="search"
-      placeholder="Nome, posto, grupo ou mesa" autocomplete="off">
-    <p id="mensagemPesquisa" class="mensagem-neutra">Digite para localizar um convidado ou grupo.</p>
-    <div id="resultados" class="grade-resultados"></div>
-  </section>
-</main>
-<div id="modalGrupo" class="modal oculto" aria-hidden="true">
-  <div class="modal-fundo" data-fechar-modal></div>
-  <section class="modal-conteudo" role="dialog" aria-modal="true">
-    <button class="botao-fechar" type="button" data-fechar-modal>×</button>
-    <div id="conteudoModal"></div>
-  </section>
-</div>
+<section class="painel">
+<label class="rotulo" for="pesquisa">Pesquisar convidado</label>
+<input id="pesquisa" class="campo-pesquisa" type="search" placeholder="Nome, posto, grupo ou mesa" autocomplete="off">
+<p id="mensagemPesquisa" class="mensagem-neutra">Digite para localizar um convidado ou grupo.</p>
+<div id="resultados" class="grade-resultados"></div>
+</section></main>
+<div id="modalGrupo" class="modal oculto" aria-hidden="true"><div class="modal-fundo" data-fechar-modal></div>
+<section class="modal-conteudo" role="dialog" aria-modal="true">
+<button class="botao-fechar" type="button" data-fechar-modal>×</button><div id="conteudoModal"></div>
+</section></div>
 <div id="toast" class="toast oculto"></div>
-<script src="js/config.js"></script><script src="js/api.js"></script>
-<script src="js/util.js"></script><script src="js/recepcao.js"></script>
+<footer class="rodape">
+  <p>Desenvolvido por Cap Av Ranyer</p>
+  <p>Seção de Cerimonial da Base Aérea de Brasília</p>
+  <p>Versão 1.0</p>
+</footer>
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/util.js"></script>
+<script src="js/recepcao.js"></script>
 </body></html>

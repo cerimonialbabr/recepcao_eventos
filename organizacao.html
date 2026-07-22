@@ -1,51 +1,46 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Organização | Recepção BABR</title><link rel="stylesheet" href="css/style.css">
-</head>
+<html lang="pt-BR"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Organização</title><link rel="stylesheet" href="css/style.css"></head>
 <body>
 <header class="topo">
-  <div>
-    <p class="topo-marca">BASE AÉREA DE BRASÍLIA</p>
-    <h1>Organização</h1>
-    <p class="topo-subtitulo">Preparação dos convidados antes do evento</p>
+  <div class="identidade-evento">
+    <p class="nome-sistema">Sistema de Gestão de Recepção em Eventos Sociais</p>
+    <h1 data-evento-nome>Evento</h1>
+    <p class="dados-evento" data-evento-dados></p>
   </div>
   <nav class="navegacao">
   <a  href="index.html">Recepção</a>
   <a  href="nominata.html">Nominata</a>
   <a  href="mesas.html">Mesas</a>
   <a  href="dashboard.html">Dashboard</a>
+  <a  href="layout.html">Layout (TV)</a>
   <a class="ativo" href="organizacao.html">Organização</a>
 </nav>
 </header>
 <main class="container">
-  <section class="painel">
-    <div class="barra-organizacao">
-      <div>
-        <label class="rotulo" for="filtroOrganizacao">Pesquisar</label>
-        <input id="filtroOrganizacao" class="campo-pesquisa" type="search"
-          placeholder="Nome, posto, grupo ou mesa">
-      </div>
-      <div>
-        <label class="rotulo" for="filtroNominata">Nominata</label>
-        <select id="filtroNominata" class="campo-select">
-          <option value="">Todos</option><option value="sim">Inseridos</option><option value="nao">Não inseridos</option>
-        </select>
-      </div>
-    </div>
-    <p id="mensagemOrganizacao" class="mensagem-neutra">Carregando...</p>
-    <div id="listaOrganizacao" class="lista-organizacao"></div>
-  </section>
-</main>
-<div id="modalEdicao" class="modal oculto" aria-hidden="true">
-  <div class="modal-fundo" data-fechar-modal></div>
-  <section class="modal-conteudo modal-largo" role="dialog" aria-modal="true">
-    <button class="botao-fechar" type="button" data-fechar-modal>×</button>
-    <div id="conteudoEdicao"></div>
-  </section>
+<section class="painel">
+<div class="barra-organizacao">
+<div><label class="rotulo" for="filtroOrganizacao">Pesquisar</label>
+<input id="filtroOrganizacao" class="campo-pesquisa" type="search" placeholder="Nome, posto, grupo ou mesa"></div>
+<div><label class="rotulo" for="filtroNominata">Nominata</label>
+<select id="filtroNominata" class="campo-select"><option value="">Todos</option><option value="sim">Inseridos</option><option value="nao">Não inseridos</option></select></div>
 </div>
+<p id="mensagemOrganizacao" class="mensagem-neutra">Carregando...</p>
+<div id="listaOrganizacao" class="lista-organizacao"></div>
+</section></main>
+<div id="modalEdicao" class="modal oculto" aria-hidden="true"><div class="modal-fundo" data-fechar-modal></div>
+<section class="modal-conteudo modal-largo" role="dialog" aria-modal="true">
+<button class="botao-fechar" type="button" data-fechar-modal>×</button><div id="conteudoEdicao"></div>
+</section></div>
 <div id="toast" class="toast oculto"></div>
-<script src="js/config.js"></script><script src="js/api.js"></script>
-<script src="js/util.js"></script><script src="js/organizacao.js"></script>
+<footer class="rodape">
+  <p>Desenvolvido por Cap Av Ranyer</p>
+  <p>Seção de Cerimonial da Base Aérea de Brasília</p>
+  <p>Versão 1.0</p>
+</footer>
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
+<script src="js/util.js"></script>
+<script src="js/organizacao.js"></script>
 </body></html>
