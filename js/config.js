@@ -1,5 +1,5 @@
 const APP_CONFIG = {
-  API_URL: "https://script.google.com/macros/s/AKfycbyydFstY24y3Bt5YZjiT8BZeDEMt9_eH3YD1POJpP14ksI5Eb7L14TSglb8qhHD9Ko_/exec",
+  API_URL: "https://script.google.com/macros/s/AKfycbwk-UKX8r1q1YeUMKrPq77M5Eu4FIL3Ht1F-UJzIOpQtRwyIYL3xBcGPY_Bj_10wMIL/exec",
   INTERVALO_ATUALIZACAO_MS: 10000,
   TAMANHO_MAXIMO_FOTO_MB: 5
 };
