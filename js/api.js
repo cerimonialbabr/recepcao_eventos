@@ -34,13 +34,8 @@ const API = {
   async post(acao, dados = {}) {
     const resposta = await fetch(APP_CONFIG.API_URL, {
       method: "POST",
-      headers: {
-        "Content-Type": "text/plain;charset=utf-8"
-      },
-      body: JSON.stringify({
-        acao,
-        ...dados
-      })
+      headers: {"Content-Type": "text/plain;charset=utf-8"},
+      body: JSON.stringify({acao, ...dados})
     });
 
     if (!resposta.ok) {
@@ -56,39 +51,14 @@ const API = {
     return json.dados;
   },
 
-  config() {
-    return this.get("config");
-  },
-
-  convidados() {
-    return this.get("convidados");
-  },
-
-  autoridades() {
-    return this.get("autoridades");
-  },
-
-  mesas() {
-    return this.get("mesas");
-  },
-
-  convidadosMesa(mesa) {
-    return this.get("mesa", { mesa });
-  },
-
-  presentes() {
-    return this.get("presentes");
-  },
-
-  checkin(id, presente) {
-    return this.post("checkin", { id, presente });
-  },
-
-  alterarMesa(id, mesa) {
-    return this.post("mesa", { id, mesa });
-  },
-
-  confirmarAutoridade(id, confirmado) {
-    return this.post("autoridade", { id, confirmado });
-  }
+  config: () => API.get("config"),
+  convidados: () => API.get("convidados"),
+  nominata: () => API.get("nominata"),
+  mesas: () => API.get("mesas"),
+  convidadosMesa: (mesa) => API.get("mesa", {mesa}),
+  checkin: (id, presente) => API.post("checkin", {id, presente}),
+  alterarMesa: (id, mesa) => API.post("mesa", {id, mesa}),
+  atualizarConvidado: (dados) => API.post("convidado", dados),
+  uploadFoto: (id, nomeArquivo, mimeType, base64) =>
+    API.post("uploadfoto", {id, nomeArquivo, mimeType, base64})
 };

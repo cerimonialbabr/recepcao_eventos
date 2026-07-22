@@ -16,18 +16,37 @@ const Util = {
       .trim();
   },
 
+  mesaExibicao(pessoa) {
+    return pessoa.mesaAtual || pessoa.mesaPlanejada || "Não definida";
+  },
+
+  agrupar(convidados) {
+    const mapa = new Map();
+
+    convidados.forEach((pessoa) => {
+      const chave = pessoa.grupo || pessoa.id;
+      if (!mapa.has(chave)) mapa.set(chave, []);
+      mapa.get(chave).push(pessoa);
+    });
+
+    return [...mapa.entries()].map(([grupo, membros]) => ({
+      grupo,
+      membros,
+      principal: membros.find((p) => p.posto) || membros[0]
+    }));
+  },
+
   toast(mensagem, tipo = "sucesso") {
     const elemento = document.getElementById("toast");
-
     if (!elemento) return;
 
     elemento.textContent = mensagem;
     elemento.className = `toast ${tipo}`;
-    clearTimeout(this._toastTimer);
 
-    this._toastTimer = setTimeout(() => {
+    clearTimeout(this._timerToast);
+    this._timerToast = setTimeout(() => {
       elemento.className = "toast oculto";
-    }, 3200);
+    }, 3300);
   },
 
   abrirModal(id) {
@@ -46,42 +65,22 @@ const Util = {
     document.body.classList.remove("sem-rolagem");
   },
 
-  mesaExibicao(convidado) {
-    return convidado.mesaAtual || convidado.mesaPlanejada || "Não definida";
-  },
-
-  agrupar(convidados) {
-    const grupos = new Map();
-
-    convidados.forEach((convidado) => {
-      const chave = convidado.grupo || convidado.id;
-
-      if (!grupos.has(chave)) {
-        grupos.set(chave, []);
-      }
-
-      grupos.get(chave).push(convidado);
-    });
-
-    return Array.from(grupos.entries()).map(([grupo, membros]) => {
-      const principal =
-        membros.find((pessoa) => pessoa.posto) ||
-        membros[0];
-
-      return {
-        grupo,
-        principal,
-        membros
+  lerArquivoBase64(arquivo) {
+    return new Promise((resolve, reject) => {
+      const leitor = new FileReader();
+      leitor.onload = () => {
+        const resultado = String(leitor.result || "");
+        resolve(resultado.split(",")[1] || "");
       };
+      leitor.onerror = () => reject(new Error("Não foi possível ler a foto."));
+      leitor.readAsDataURL(arquivo);
     });
   }
 };
 
 document.addEventListener("click", (evento) => {
   const alvo = evento.target.closest("[data-fechar-modal]");
-
-  if (alvo) {
-    const modal = alvo.closest(".modal");
-    if (modal) Util.fecharModal(modal.id);
-  }
+  if (!alvo) return;
+  const modal = alvo.closest(".modal");
+  if (modal) Util.fecharModal(modal.id);
 });

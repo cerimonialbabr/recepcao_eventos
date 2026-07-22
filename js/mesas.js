@@ -2,15 +2,11 @@ let mesas = [];
 
 document.addEventListener("DOMContentLoaded", () => {
   carregarMesas();
-
-  document
-    .getElementById("atualizarMesas")
-    .addEventListener("click", carregarMesas);
+  document.getElementById("atualizarMesas").addEventListener("click", carregarMesas);
 });
 
 async function carregarMesas() {
   const mensagem = document.getElementById("mensagemMesas");
-
   try {
     mesas = await API.mesas();
     renderizarMesas();
@@ -25,29 +21,13 @@ function renderizarMesas() {
   mapa.innerHTML = "";
 
   mesas.forEach((mesa) => {
-    const ocupacao = mesa.capacidade
-      ? mesa.ocupados / mesa.capacidade
-      : 0;
-
-    let classe = "disponivel";
-
-    if (mesa.lotada) {
-      classe = "lotada";
-    } else if (ocupacao >= 0.75) {
-      classe = "quase-cheia";
-    }
-
+    const proporcao = mesa.capacidade ? mesa.ocupados / mesa.capacidade : 0;
+    const classe = mesa.lotada ? "lotada" : proporcao >= 0.75 ? "quase-cheia" : "disponivel";
     const botao = document.createElement("button");
     botao.type = "button";
     botao.className = `cartao-mesa ${classe}`;
-    botao.style.setProperty("--pos-x", mesa.posX);
-    botao.style.setProperty("--pos-y", mesa.posY);
-    botao.innerHTML = `
-      <span>Mesa</span>
-      <strong>${Util.escapar(mesa.mesa)}</strong>
-      <small>${mesa.ocupados}/${mesa.capacidade || "—"}</small>
-    `;
-
+    botao.innerHTML = `<span>Mesa</span><strong>${Util.escapar(mesa.mesa)}</strong>
+      <small>${mesa.ocupados}/${mesa.capacidade || "—"}</small>`;
     botao.addEventListener("click", () => abrirMesa(mesa.mesa));
     mapa.appendChild(botao);
   });
@@ -60,47 +40,43 @@ async function abrirMesa(numeroMesa) {
 
   try {
     const [convidados, todasMesas] = await Promise.all([
-      API.convidadosMesa(numeroMesa),
-      API.mesas()
+      API.convidadosMesa(numeroMesa), API.mesas()
     ]);
 
     conteudo.innerHTML = `
       <h2>Mesa ${Util.escapar(numeroMesa)}</h2>
+      <p class="mensagem-neutra">Mesas lotadas ficam indisponíveis. Use “Retirar da mesa” para liberar uma vaga.</p>
       <div class="lista-mesa">
         ${convidados.length ? convidados.map((pessoa) => `
           <article class="linha-mesa">
-            <div>
-              <strong>${Util.escapar(pessoa.nomeExibicao)}</strong>
-              <small>${pessoa.checkin ? "Presente" : "Pendente"}</small>
-            </div>
-            <select data-id="${Util.escapar(pessoa.id)}">
-              <option value="">Sem mesa atual</option>
-              ${todasMesas.map((mesa) => `
-                <option value="${Util.escapar(mesa.mesa)}"
-                  ${Util.mesaExibicao(pessoa) === mesa.mesa ? "selected" : ""}>
-                  Mesa ${Util.escapar(mesa.mesa)}
-                </option>
-              `).join("")}
+            <div><strong>${Util.escapar(pessoa.nomeExibicao)}</strong>
+            <small>${pessoa.checkin ? "Presente" : "Pendente"}</small></div>
+            <select data-id="${Util.escapar(pessoa.id)}" data-mesa-atual="${Util.escapar(Util.mesaExibicao(pessoa))}">
+              <option value="">Retirar da mesa</option>
+              ${todasMesas.map((m) => {
+                const atual = Util.mesaExibicao(pessoa) === m.mesa;
+                const indisponivel = m.lotada && !atual;
+                return `<option value="${Util.escapar(m.mesa)}"
+                  ${atual ? "selected" : ""} ${indisponivel ? "disabled" : ""}>
+                  Mesa ${Util.escapar(m.mesa)} — ${m.ocupados}/${m.capacidade || "—"}${m.lotada && !atual ? " (LOTADA)" : ""}
+                </option>`;
+              }).join("")}
             </select>
-          </article>
-        `).join("") : "<p>Nenhum convidado nesta mesa.</p>"}
-      </div>
-    `;
+          </article>`).join("") : "<p>Nenhum convidado nesta mesa.</p>"}
+      </div>`;
 
     conteudo.querySelectorAll("select").forEach((seletor) => {
       seletor.addEventListener("change", async () => {
+        const anterior = seletor.dataset.mesaAtual === "Não definida" ? "" : seletor.dataset.mesaAtual;
         seletor.disabled = true;
-
         try {
-          await API.alterarMesa(
-            seletor.dataset.id,
-            seletor.value
-          );
-          Util.toast("Mesa atualizada.");
+          await API.alterarMesa(seletor.dataset.id, seletor.value);
+          Util.toast(seletor.value ? "Mesa atualizada." : "Convidado retirado da mesa.");
           await carregarMesas();
+          await abrirMesa(numeroMesa);
         } catch (erro) {
+          seletor.value = anterior;
           Util.toast(erro.message, "erro");
-        } finally {
           seletor.disabled = false;
         }
       });
