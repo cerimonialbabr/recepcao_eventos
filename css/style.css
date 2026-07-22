@@ -27,3 +27,39 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{
 .grade-edicao{display:grid;grid-template-columns:260px 1fr;gap:26px;margin:20px 0}.area-foto-edicao{width:100%;min-height:220px;border:1px dashed var(--borda);border-radius:16px;display:grid;place-items:center;overflow:hidden;background:#f8fafc}.foto-edicao{width:100%;aspect-ratio:4/3;object-fit:cover}.sem-foto-edicao{padding:24px;text-align:center;color:var(--cinza)}.botao-arquivo{display:block;text-align:center;margin-top:12px;cursor:pointer}.botao-arquivo input{display:none}.formulario-edicao{display:flex;flex-direction:column;gap:14px}.formulario-edicao label>span{display:block;font-weight:bold;margin-bottom:7px}.campo-check{display:flex!important;align-items:center;gap:10px}.campo-check input{width:22px;height:22px}.campo-check span{margin:0!important}
 @media(max-width:800px){.topo{align-items:flex-start;flex-direction:column}.navegacao{width:100%;overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}.resumo,.resumo-grande{grid-template-columns:repeat(2,1fr)}.barra-organizacao,.grade-edicao{grid-template-columns:1fr}.linha-organizacao{grid-template-columns:46px 1fr 70px}.linha-organizacao>div:nth-child(3),.linha-organizacao>div:nth-child(4){display:none}.cartao-grupo-topo,.cabecalho-secao,.linha-mesa{align-items:flex-start;flex-direction:column}.modal-conteudo{padding:22px 18px}}
 @media(max-width:430px){.container{width:min(100% - 18px,1180px);margin-top:10px}.painel{padding:16px;border-radius:14px}.resumo article{padding:15px}.resumo strong{font-size:1.55rem}.perfil-grupo{flex-direction:column}.mapa-mesas{grid-template-columns:repeat(2,minmax(120px,1fr));gap:14px}}
+
+/* v0.3 */
+.nome-sistema{font-size:.74rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.78}
+.identidade-evento h1{font-size:clamp(2rem,4.8vw,3.25rem);line-height:1.05;margin-top:7px}
+.dados-evento{font-size:1rem;margin-top:9px!important;opacity:.9}
+.rodape{text-align:center;color:#667085;font-size:.76rem;line-height:1.35;padding:8px 16px 24px}
+.rodape p{margin:2px 0}
+.grade-nominata{grid-template-columns:1fr}
+.cartao-nominata{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:14px;padding:12px 14px;min-height:94px}
+.cartao-nominata img{width:72px;height:72px;aspect-ratio:1/1;border-radius:12px;object-fit:cover}
+.cartao-nominata.confirmado{background:#e6f4ea;border-color:#8fc5a6}
+.dados-nominata,.dados-nominata.sem-foto{padding:0;min-height:0}
+.dados-nominata h3{font-size:1.08rem;margin:3px 0}
+.dados-nominata p{margin:4px 0 0;font-size:.84rem}
+.cartao-nominata button{width:auto;margin:0;white-space:nowrap;align-self:center}
+.cartao-mesa em{font-style:normal;font-size:.76rem;max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin:3px auto 5px}
+.tabela-dashboard table{width:auto;min-width:0;margin:0 auto;table-layout:auto}
+.tabela-dashboard th,.tabela-dashboard td{text-align:center;padding:9px 11px;white-space:nowrap;width:1%}
+.tabela-dashboard th:nth-child(2),.tabela-dashboard td:nth-child(2){width:auto}
+.linha-organizacao>div:nth-child(3),.linha-organizacao>div:nth-child(4){display:flex;align-items:center;gap:7px;white-space:nowrap}
+.linha-organizacao .rotulo-mini{display:inline-block;margin:0}
+.pagina-construcao{text-align:center;padding:70px 24px}
+.icone-construcao{width:92px;height:64px;border:4px solid var(--azul);border-radius:10px;margin:0 auto 22px;display:grid;place-items:center;font-weight:800;font-size:1.4rem;color:var(--azul)}
+@media(max-width:620px){
+  .topo{padding-top:18px}
+  .identidade-evento h1{font-size:2rem}
+  .dados-evento{font-size:.9rem}
+  .cartao-nominata{grid-template-columns:auto minmax(0,1fr) auto;gap:9px;padding:10px}
+  .cartao-nominata img{width:54px;height:54px}
+  .cartao-nominata button{padding:10px 11px;font-size:.78rem;max-width:112px;white-space:normal;line-height:1.15}
+  .dados-nominata h3{font-size:.96rem}
+  .dados-nominata span,.dados-nominata p{font-size:.74rem}
+  .tabela-responsiva{overflow-x:visible}
+  .tabela-dashboard table{font-size:.74rem;width:100%}
+  .tabela-dashboard th,.tabela-dashboard td{padding:7px 3px;white-space:nowrap}
+}
