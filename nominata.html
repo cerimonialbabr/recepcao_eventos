@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nominata | Recepção BABR</title><link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topo">
+  <div>
+    <p class="topo-marca">BASE AÉREA DE BRASÍLIA</p>
+    <h1>Nominata</h1>
+    <p class="topo-subtitulo">Posto, nome, fotografia e confirmação de presença</p>
+  </div>
+  <nav class="navegacao">
+  <a  href="index.html">Recepção</a>
+  <a class="ativo" href="nominata.html">Nominata</a>
+  <a  href="mesas.html">Mesas</a>
+  <a  href="dashboard.html">Dashboard</a>
+  <a  href="organizacao.html">Organização</a>
+</nav>
+</header>
+<main class="container">
+  <section class="painel">
+    <div class="cabecalho-secao">
+      <div><h2>Pessoas da nominata</h2><p>As confirmações permanecem visíveis nesta página.</p></div>
+      <button id="atualizarNominata" class="botao-secundario" type="button">Atualizar</button>
+    </div>
+    <div id="listaNominata" class="grade-nominata"></div>
+    <p id="mensagemNominata" class="mensagem-neutra">Carregando...</p>
+  </section>
+</main>
+<div id="toast" class="toast oculto"></div>
+<script src="js/config.js"></script><script src="js/api.js"></script>
+<script src="js/util.js"></script><script src="js/nominata.js"></script>
+</body></html>

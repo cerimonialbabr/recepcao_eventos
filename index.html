@@ -1,71 +1,41 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recepção BABR</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recepção BABR</title><link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header class="topo">
-    <div>
-      <p class="topo-marca">BASE AÉREA DE BRASÍLIA</p>
-      <h1 id="nomeEvento">Recepção</h1>
-      <p id="dadosEvento" class="topo-subtitulo"></p>
-    </div>
-    <nav class="navegacao">
-      <a class="ativo" href="index.html">Recepção</a>
-      <a href="autoridades.html">Autoridades</a>
-      <a href="mesas.html">Mesas</a>
-      <a href="dashboard.html">Dashboard</a>
-    </nav>
-  </header>
-
-  <main class="container">
-    <section class="resumo" aria-label="Resumo do evento">
-      <article>
-        <strong id="totalPresentes">0</strong>
-        <span>presentes</span>
-      </article>
-      <article>
-        <strong id="totalPendentes">0</strong>
-        <span>pendentes</span>
-      </article>
-      <article>
-        <strong id="totalConvidados">0</strong>
-        <span>convidados</span>
-      </article>
-    </section>
-
-    <section class="painel">
-      <label class="rotulo" for="pesquisa">Pesquisar convidado</label>
-      <input
-        id="pesquisa"
-        class="campo-pesquisa"
-        type="search"
-        placeholder="Nome, posto, grupo ou mesa"
-        autocomplete="off"
-      >
-      <p id="mensagemPesquisa" class="mensagem-neutra">
-        Digite para localizar um convidado ou grupo.
-      </p>
-      <div id="resultados" class="grade-resultados"></div>
-    </section>
-  </main>
-
-  <div id="modalGrupo" class="modal oculto" aria-hidden="true">
-    <div class="modal-fundo" data-fechar-modal></div>
-    <section class="modal-conteudo" role="dialog" aria-modal="true">
-      <button class="botao-fechar" type="button" data-fechar-modal aria-label="Fechar">×</button>
-      <div id="conteudoModal"></div>
-    </section>
+<header class="topo">
+  <div>
+    <p class="topo-marca">BASE AÉREA DE BRASÍLIA</p>
+    <h1>Recepção</h1>
+    <p class="topo-subtitulo">Pesquisa e confirmação de presença</p>
   </div>
-
-  <div id="toast" class="toast oculto"></div>
-
-  <script src="js/config.js"></script>
-  <script src="js/api.js"></script>
-  <script src="js/util.js"></script>
-  <script src="js/recepcao.js"></script>
-</body>
-</html>
+  <nav class="navegacao">
+  <a class="ativo" href="index.html">Recepção</a>
+  <a  href="nominata.html">Nominata</a>
+  <a  href="mesas.html">Mesas</a>
+  <a  href="dashboard.html">Dashboard</a>
+  <a  href="organizacao.html">Organização</a>
+</nav>
+</header>
+<main class="container container-estreito">
+  <section class="painel">
+    <label class="rotulo" for="pesquisa">Pesquisar convidado</label>
+    <input id="pesquisa" class="campo-pesquisa" type="search"
+      placeholder="Nome, posto, grupo ou mesa" autocomplete="off">
+    <p id="mensagemPesquisa" class="mensagem-neutra">Digite para localizar um convidado ou grupo.</p>
+    <div id="resultados" class="grade-resultados"></div>
+  </section>
+</main>
+<div id="modalGrupo" class="modal oculto" aria-hidden="true">
+  <div class="modal-fundo" data-fechar-modal></div>
+  <section class="modal-conteudo" role="dialog" aria-modal="true">
+    <button class="botao-fechar" type="button" data-fechar-modal>×</button>
+    <div id="conteudoModal"></div>
+  </section>
+</div>
+<div id="toast" class="toast oculto"></div>
+<script src="js/config.js"></script><script src="js/api.js"></script>
+<script src="js/util.js"></script><script src="js/recepcao.js"></script>
+</body></html>
