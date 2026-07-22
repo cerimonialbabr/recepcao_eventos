@@ -1,6 +1,6 @@
 const estado = {convidados: [], grupos: [], grupoAberto: null};
 
-document.addEventListener("DOMContentLoaded", iniciar);
+document.addEventListener("DOMContentLoaded", async () => { await Util.carregarCabecalhoEvento(); iniciar(); });
 
 async function iniciar() {
   try {

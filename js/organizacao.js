@@ -1,6 +1,7 @@
 const organizacao = {convidados: [], mesas: [], pessoa: null};
 
 document.addEventListener("DOMContentLoaded", async () => {
+  await Util.carregarCabecalhoEvento();
   document.getElementById("filtroOrganizacao").addEventListener("input", renderizarLista);
   document.getElementById("filtroNominata").addEventListener("change", renderizarLista);
   await carregar();
@@ -32,6 +33,10 @@ function renderizarLista() {
       (filtroNom === "sim" && p.nominata) ||
       (filtroNom === "nao" && !p.nominata);
     return correspondeTexto && correspondeNom;
+  }).sort((a,b) => {
+    const numeroA = Util.numeroId(a.id);
+    const numeroB = Util.numeroId(b.id);
+    return numeroA !== numeroB ? numeroA - numeroB : String(a.id).localeCompare(String(b.id), "pt-BR", {numeric:true});
   });
 
   lista.innerHTML = filtrados.map((p) => `
